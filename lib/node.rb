@@ -24,6 +24,7 @@ class Node
   end
   def addRelation(relatingNode)
     node = Project.current.nodelist[relatingNode]
+    return if relations.has_value?(node)
     if(node == nil)then
       node = Node::new({"name" => relatingNode})
     end
