@@ -4,7 +4,7 @@ class Project
   attr_accessor :nodelist, :relationlist
   def initialize
     @@current = self
-    @nodelist = Hash::new
+    @nodelist = {}
     @relationlist = []
   end
   def self.current
@@ -12,8 +12,8 @@ class Project
   end
   def load (filepath)
     lines = File.readlines(filepath)
-    datahash = Hash::new
-    relationarray = Array::new
+    datahash = {}
+    relationarray = []
     node = nil
     lines.each { |line|
       line.chomp!
@@ -22,11 +22,10 @@ class Project
         puts key
         puts value
         if(key.downcase == "name")then
-          datahash["name"] = value
           if(Project.current.nodelist.has_key?(value))then
             node = Project.current.nodelist[value]
           else
-            node = Node::new(datahash,relationarray)
+            node = Node::new(value,datahash,relationarray)
           end
         elsif(key.downcase == "related")then
           relationarray << value
@@ -36,7 +35,7 @@ class Project
       else
         if(node != nil)then
           node.save(datahash,relationarray)
-          datahash = Hash::new
+          datahash = {}
           relationarray = []
           node = nil
         end

@@ -1,27 +1,28 @@
 require "relation.rb"
 require "project.rb"
 class Node
+  
   attr_accessor :relations, :related, :data, :circle
-  def initialize(datahash=nil,relationar=[])
-    @relations = Hash::new
-    @data = Hash::new
-    save datahash, relationar
-  end
-  def save(datahash=nil,relationar=[])
-    if(datahash == nil)
-      puts "No data"
-    elsif(datahash["name"] == nil)
+  
+  def initialize(name=nil,datahash={},relationar=[])
+    if(name == nil)
       puts "No name"
-    else
-      @data = datahash if @data ==nil
-      @data.update(datahash)
-      relationar.each{|relation|
-        addRelation(relation)
-      }
-      Project.current.nodelist[@data["name"]] = self
-      puts "Saved"
+      return
     end
+    @relations = {}
+    @data = {"name"=>name}
+    save datahash, relationar
+    Project.current.nodelist[@data["name"]] = self
   end
+  
+  def save(datahash={},relationar=[])
+    @data.update(datahash)
+    relationar.each{|relation|
+      addRelation(relation)
+    }
+    puts "Saved"
+  end
+  
   def addRelation(relatingNode)
     node = Project.current.nodelist[relatingNode]
     return if relations.has_value?(node)
@@ -30,6 +31,7 @@ class Node
     end
     Relation::new(self,node)
   end
+  
   def display
     puts "\n\n"
     puts @data["name"]

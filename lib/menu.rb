@@ -8,7 +8,9 @@ import javax.swing.JOptionPane
 import javax.swing.JSeparator
 import java.awt.event.ActionListener
 
-class Menu< JFrame
+require "project.rb"
+
+class Menu < JFrame
   include ActionListener
   def initialize
     super
@@ -36,7 +38,6 @@ class Menu< JFrame
 
     @search = JMenu::new
     @search.setText "Search"
-    @search.add_action_listener self
     @menubar.add @search
     
     
@@ -51,5 +52,22 @@ class Menu< JFrame
     setDefaultCloseOperation EXIT_ON_CLOSE
     setVisible true
   end
+  def actionPerformed(event)
+    case event.source
+    when @new then new_pressed
+    when @exit then exit_pressed
+    when @searchnew then search_pressed
+    end
+  end
+  def new_pressed
+    Project::new()
+    Project.current.load("../test.csv")
+    Project.current.nodelist["Ruby"].display
+  end
+  def exit_pressed
+    
+  end
+  def search_pressed
+
+  end
 end
-m = Menu::new
