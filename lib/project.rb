@@ -19,8 +19,6 @@ class Project
       line.chomp!
       if(line != "")then
         key,value = line.split(",",2)
-        puts key
-        puts value
         if(key.downcase == "name")then
           if(Project.current.nodelist.has_key?(value))then
             node = Project.current.nodelist[value]
@@ -41,6 +39,8 @@ class Project
         end
       end
     }
-    Node::new(datahash)
+    if(node != nil)then
+      node.save(datahash,relationarray)
+    end
   end
 end

@@ -1,8 +1,11 @@
+require "rexml/document"
+include REXML
+
 require "relation.rb"
 require "project.rb"
 class Node
   
-  attr_accessor :relations, :related, :data, :circle
+  attr_accessor :relations, :related, :data
   
   def initialize(name=nil,datahash={},relationar=[])
     if(name == nil)
@@ -20,14 +23,13 @@ class Node
     relationar.each{|relation|
       addRelation(relation)
     }
-    puts "Saved"
   end
   
   def addRelation(relatingNode)
     node = Project.current.nodelist[relatingNode]
     return if relations.has_value?(node)
     if(node == nil)then
-      node = Node::new({"name" => relatingNode})
+      node = Node::new(relatingNode)
     end
     Relation::new(self,node)
   end
@@ -63,5 +65,14 @@ class Node
     if(!displayed)then
       self.display
     end
+  end
+  def to_xml
+    node = Element.new "Node"
+    @data.each{|key,value|
+      data = Element.new key
+      data.text = value
+      node << data
+    }
+    node
   end
 end

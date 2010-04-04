@@ -1,11 +1,9 @@
 =begin
-require "project.rb"
-puts "Start"
-Project::new()
-Project.current.load("../test.csv")
-puts "done loading"
-puts Project.current.nodelist["Ruby"].data["name"]
-Project.current.nodelist["Ruby"].display
-=end
 require "menu.rb"
 m = Menu::new
+=end
+require "project.rb"
+require "xml.rb"
+Project::new()
+Project.current.load("../test/test.csv")
+x = Xml.new "../test/test.xml"
