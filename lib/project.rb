@@ -10,37 +10,20 @@ class Project
   def self.current
     @@current
   end
-  def load (filepath)
-    lines = File.readlines(filepath)
-    datahash = {}
-    relationarray = []
-    node = nil
-    lines.each { |line|
-      line.chomp!
-      if(line != "")then
-        key,value = line.split(",",2)
-        if(key.downcase == "name")then
-          if(Project.current.nodelist.has_key?(value))then
-            node = Project.current.nodelist[value]
-          else
-            node = Node::new(value,datahash,relationarray)
-          end
-        elsif(key.downcase == "related")then
-          relationarray << value
-        else
-          datahash[key] = value
-        end
-      else
-        if(node != nil)then
-          node.save(datahash,relationarray)
-          datahash = {}
-          relationarray = []
-          node = nil
-        end
-      end
-    }
-    if(node != nil)then
-      node.save(datahash,relationarray)
+
+  def load(filepath)
+    if(filepath.include?".xml")then
+      Xml.load filepath
+    elsif(filepath.include?".csv")then
+      Csv.load filepath
+    end
+  end
+  def save(filepath)
+    if(filepath.include?".xml")then
+      Xml.save filepath
+    elsif(filepath.include?".csv")then
+      puts "Not able to save to csv file yet"
+      #Csv.save filepath
     end
   end
 end

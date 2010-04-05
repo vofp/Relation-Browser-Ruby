@@ -9,6 +9,5 @@ require "xml.rb"
 require "project.rb"
 Project::new()
 Project.current.load("../test/test.csv")
-x = Xml.new "../test/test.xml"
-x.load
+Project.current.save("../test/test.xml")
 Project.current.nodelist[Project.current.nodelist.keys[0]].display

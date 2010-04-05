@@ -1,5 +1,7 @@
 require "rexml/document"
 require "project.rb"
+require "csv.rb"
+require "xml.rb"
 include REXML
 
 class Xml
@@ -7,7 +9,8 @@ class Xml
   def initialize(filename)
     @filepath = filename
   end
-  def save
+  def self.save(filename=@filepath)
+    @filepath = filename
     project = Element.new "Project"
     Project.current.nodelist.each_value{|node|
       project << node.to_xml
@@ -19,10 +22,9 @@ class Xml
     doc << project
     File.open(@filepath, 'w') {|f| doc.write(f,2,false)}
   end
-  def load
+  def self.load(filename=@filepath)
+    @filepath = filename
     doc = Document::new File::new @filepath
-    root = doc.root
-    #puts root
     doc.elements.each("Project/Node") {|node|
       datahash = {}
       node.elements.each{|data|
