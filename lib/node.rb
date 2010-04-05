@@ -9,8 +9,11 @@ class Node
   
   def initialize(name=nil,datahash={},relationar=[])
     if(name == nil)
-      puts "No name"
-      return
+      name = datahash["name"]
+      if(name == nil)
+        puts "No name"
+        return
+      end
     end
     @relations = {}
     @data = {"name"=>name}
@@ -37,16 +40,15 @@ class Node
   def display
     puts "\n\n"
     puts @data["name"]
-    puts
     @data.each {|key,value|
       next if(key == "name")
       puts key+":"
       puts value
     }
-    puts
     i = 0
     @relations.each_value{|value|
-      puts "#{i})\t#{value.data["name"]}"
+      print "#{i})".ljust(4)
+      puts value.data["name"].to_s
       i+=1
     }
     input = gets.chomp.to_i

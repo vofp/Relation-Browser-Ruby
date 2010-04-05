@@ -1,0 +1,126 @@
+<Project>
+  <Node>
+    <name>
+      Java
+    </name>
+    <description>
+      Java is a programming language originally developed by James Gosling at
+      Sun Microsystems and released in 1995 as a core component of Sun
+      Microsystems&apos; Java platform.
+    </description>
+  </Node>
+  <Node>
+    <name>
+      not so Awesome
+    </name>
+  </Node>
+  <Node>
+    <name>
+      programming
+    </name>
+  </Node>
+  <Node>
+    <name>
+      Ruby
+    </name>
+    <description>
+      Ruby is a dynamic, reflective, general purpose object-oriented programming
+      language that combines syntax inspired by Perl with Smalltalk-like
+      features.
+    </description>
+  </Node>
+  <Node>
+    <name>
+      Awesome
+    </name>
+  </Node>
+  <Node>
+    <name>
+      Python
+    </name>
+    <description>
+      Python is a general-purpose high-level programming language.
+    </description>
+  </Node>
+  <Node>
+    <name>
+      C++
+    </name>
+    <description>
+      C++ (pronounced &quot;See plus plus&quot;) is a statically typed,
+      free-form, multi-paradigm, compiled, general-purpose programming language.
+    </description>
+  </Node>
+  <Relation>
+    <node1>
+      Java
+    </node1>
+    <node2>
+      not so Awesome
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      Java
+    </node1>
+    <node2>
+      programming
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      Ruby
+    </node1>
+    <node2>
+      Awesome
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      Ruby
+    </node1>
+    <node2>
+      Python
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      Ruby
+    </node1>
+    <node2>
+      programming
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      C++
+    </node1>
+    <node2>
+      not so Awesome
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      C++
+    </node1>
+    <node2>
+      programming
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      Python
+    </node1>
+    <node2>
+      Awesome
+    </node2>
+  </Relation>
+  <Relation>
+    <node1>
+      Python
+    </node1>
+    <node2>
+      programming
+    </node2>
+  </Relation>
+</Project>
