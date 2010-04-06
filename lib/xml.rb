@@ -5,12 +5,11 @@ require "xml.rb"
 include REXML
 
 class Xml
-  attr_accessor :filepath
-  def initialize(filename)
-    @filepath = filename
+  def initialize
+
   end
-  def self.save(filename=@filepath)
-    @filepath = filename
+  def self.save(filepath)
+    filepath
     project = Element.new "Project"
     Project.current.nodelist.each_value{|node|
       project << node.to_xml
@@ -20,11 +19,11 @@ class Xml
     }
     doc = Document::new
     doc << project
-    File.open(@filepath, 'w') {|f| doc.write(f,2,false)}
+    File.open(filepath, 'w') {|f| doc.write(f,2,false)}
   end
-  def self.load(filename=@filepath)
-    @filepath = filename
-    doc = Document::new File::new @filepath
+  def self.load(filepath)
+    filepath
+    doc = Document::new File::new filepath
     doc.elements.each("Project/Node") {|node|
       datahash = {}
       node.elements.each{|data|
