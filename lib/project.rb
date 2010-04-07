@@ -16,20 +16,26 @@ class Project
   def self.load(filename=@filepath)
     @filepath = filename
     if(@filepath.include?".xml")then
+      require "xml.rb"
       Xml.load @filepath
     elsif(@filepath.include?".csv")then
+      require "csv.rb"
       Csv.load @filepath
     elsif(@filepath.include?".obj")then
+      require "obj.rb"
       Obj.load @filepath
     end
   end
   def self.save(filename=@filepath)
     @filepath = filename
     if(@filepath.include?".xml")then
+      require "xml.rb"
       Xml.save @filepath
     elsif(@filepath.include?".obj")then
+      require "obj.rb"
       Obj.save @filepath
     elsif(@filepath.include?".csv")then
+      require "csv.rb"
       puts "Not able to save to csv file yet"
       #Csv.save filepath
     end

@@ -1,4 +1,5 @@
 require "relation.rb"
+require "project.rb"
 class OneWayRelation < Relation
   def initialize(n1,n2)
     Project.current.relationlist << self

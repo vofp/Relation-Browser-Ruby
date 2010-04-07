@@ -45,7 +45,7 @@ class Node
       puts key+":"
       puts value
     }
-    i = 0
+    i = 1
     @relations.each_value{|value|
       print "#{i})".ljust(4)
       puts value.data["name"].to_s
@@ -53,9 +53,9 @@ class Node
     }
     input = gets.chomp.to_i
     #Project.current.nodelist[input].display
-    i = 0
+    i = 1
     displayed = false
-    if(input < @relations.size and input >= 0)then
+    if(input <= @relations.size and input >= 1)then
       @relations.each_value{|node|
         if(i==input)then
           node.display
